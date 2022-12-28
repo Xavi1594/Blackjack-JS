@@ -1,0 +1,10 @@
+@import url(./header.css);
+@import url(./main.css);
+
+
+html, body {
+    margin: 0;
+    background-color: #2F4F30 ;
+    color: white;
+    
+}

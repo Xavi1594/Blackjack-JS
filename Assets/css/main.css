@@ -1,0 +1,10 @@
+.carta {
+    position: relative;
+    width: 150px;
+    left: 100px;
+    margin-left: -75px;
+}
+
+#jugador-cartas, #cpu-cartas {
+height: 250px;
+}
