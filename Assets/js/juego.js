@@ -62,19 +62,18 @@ const turnoCpu = (puntosMinimos) => {
     }
   } while (puntosCpu < puntosMinimos && puntosMinimos <= 21);
 
-setTimeout( () => {
-  if (puntosCpu === puntosMinimos) { 
-    alert('Empate')
-} else if (puntosMinimos > 21 ) {
-    alert('Gana la Cpu')
-} else if (puntosCpu > 21) {
-    alert( 'Gana jugador 1')
-} else {
-    alert('Gana la cpu')
-}
-    
-}, 60 );
-}
+  setTimeout(() => {
+    if (puntosCpu === puntosMinimos) {
+      alert("Empate");
+    } else if (puntosMinimos > 21) {
+      alert("Gana la Cpu");
+    } else if (puntosCpu > 21) {
+      alert("Gana jugador 1");
+    } else {
+      alert("Gana la cpu");
+    }
+  }, 60);
+};
 
 btnPedir.addEventListener("click", () => {
   const carta = pedirCarta();
@@ -88,7 +87,6 @@ btnPedir.addEventListener("click", () => {
 
   if (puntosJugador > 21) {
     {
-     
     }
     btnPedir.disabled = true;
     btnPlantarse.disabled = true;
@@ -104,4 +102,17 @@ btnPlantarse.addEventListener("click", () => {
   btnPedir.disabled = true;
   btnPlantarse.disabled = true;
   turnoCpu(puntosJugador);
+});
+btnNuevo.addEventListener("click", () => {
+  deck = crearDeck();
+
+  puntosJugador = 0;
+  puntosCpu = 0;
+  PuntosHtml[0] = 0
+  PuntosHtml [1] = 0
+  divCartasCpu.innerHTML = '';
+  divCartasJugador.innerHTML = ''
+  btnPedir.disabled = false;
+  btnPlantarse.disabled = false;
+  
 });
