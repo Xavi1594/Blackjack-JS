@@ -6,6 +6,8 @@ const cartasEspeciales = ['A','J','Q','K']
 let puntosJugador = 0;
 puntosCpu = 0
 const btnPedir = document.querySelector('#btnPedir')
+const btnPlantarse = document.querySelector('#btnPlantarse')
+
 
 const divCartasJugador = document.querySelector('#jugador-cartas')
 const divCartasCpu = document.querySelector('#cpu-cartas')
@@ -78,11 +80,7 @@ btnPedir.addEventListener('click', () => {
     PuntosHtml[0].innerText = puntosJugador;
 
 
-    btnPlantarse.addEventListener('click', () => {
-        btnPlantarse.disabled = true
-        btnPedir.disabled = true
-        turnoCpu(puntosJugador)
-    })
+    
 
 const imgCarta = document.createElement('img');
 imgCarta.src = `Assets/Cartas/${carta}.png`
@@ -91,11 +89,19 @@ divCartasJugador.append(imgCarta)
 
 if ( puntosJugador > 21 ) { console.log('Perdiste');
     btnPedir.disabled = true
+    btnPlantarse.disabled = true
     turnoCpu(puntosJugador);
 
 } else if ( puntosJugador === 21 ) {
     console.warn('21, genial');
     btnPedir.disabled = true;
+    btnPlantarse.disabled = true
     turnoCpu ( puntosJugador)
 }
+})
+
+btnPlantarse.addEventListener('click', () => {
+    
+    btnPedir.disabled = true
+    turnoCpu(puntosJugador)
 })
