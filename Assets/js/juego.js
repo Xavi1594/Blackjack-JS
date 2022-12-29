@@ -3,6 +3,13 @@ let deck = [];
 const tipos = ['C','D','H','S' ]
 const cartasEspeciales = ['A','J','Q','K']
 
+let puntosJugador = 0;
+puntosCpu = 0
+const btnPedir = document.querySelector('#btnPedir')
+
+const PuntosHtml = document.querySelectorAll('small')
+
+
 const crearDeck = () => {
 
 for (let i = 2; i <= 10; i++) {
@@ -29,8 +36,6 @@ const pedirCarta = () => {
     }
 
   const carta = deck.pop()
-  console.log(deck);
-  console.log(carta);
   return carta;
 }
 
@@ -41,5 +46,13 @@ return ( isNaN(valor) ) ?
         ( valor === 'A') ? 11 : 10
        : valor * 1
 }
-const valor = valorCarta (pedirCarta())
-console.log({valor});
+
+btnPedir.addEventListener('click', () => {
+
+    const carta = pedirCarta()
+     puntosJugador = puntosJugador + valorCarta(carta)
+    PuntosHtml[0].innerText = puntosJugador;
+
+    
+
+})
