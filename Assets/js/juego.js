@@ -6,7 +6,10 @@ const cartasEspeciales = ['A','J','Q','K']
 let puntosJugador = 0;
 puntosCpu = 0
 const btnPedir = document.querySelector('#btnPedir')
+
 const divCartasJugador = document.querySelector('#jugador-cartas')
+const divCartasCpu = document.querySelector('#cpu-cartas')
+
 const PuntosHtml = document.querySelectorAll('small')
 
 
@@ -44,7 +47,28 @@ const valorCarta = (carta) => {
 const valor = carta.substring(0, carta.length -1)
 return ( isNaN(valor) ) ? 
         ( valor === 'A') ? 11 : 10
-       : valor * 1
+       : valor * 1;
+}
+
+//TURNO CPU
+const turnoCpu = (puntosMinimos) => {
+
+    do {
+        const carta = pedirCarta();
+
+        puntosCpu = puntosCpu + valorCarta (carta);
+        PuntosHtml[1].innerText = puntosCpu
+
+        const imgCarta = document.createElement('img');
+imgCarta.src = `Assets/Cartas/${carta}.png`
+imgCarta.classList.add('carta')
+divCartasCpu.append(imgCarta)
+
+if ( puntosMinimos > 21 ) {
+    break
+}
+    } while( ( puntosCpu < puntosMinimos ) && (puntosMinimos <= 21 ) )
+
 }
 
 btnPedir.addEventListener('click', () => {
@@ -53,12 +77,25 @@ btnPedir.addEventListener('click', () => {
      puntosJugador = puntosJugador + valorCarta(carta)
     PuntosHtml[0].innerText = puntosJugador;
 
+
+    btnPlantarse.addEventListener('click', () => {
+        btnPlantarse.disabled = true
+        btnPedir.disabled = true
+        turnoCpu(puntosJugador)
+    })
+
 const imgCarta = document.createElement('img');
 imgCarta.src = `Assets/Cartas/${carta}.png`
 imgCarta.classList.add('carta')
 divCartasJugador.append(imgCarta)
 
-if ( puntosJugador >21 ) { console.log('Perdiste');
+if ( puntosJugador > 21 ) { console.log('Perdiste');
     btnPedir.disabled = true
-} 
+    turnoCpu(puntosJugador);
+
+} else if ( puntosJugador === 21 ) {
+    console.warn('21, genial');
+    btnPedir.disabled = true;
+    turnoCpu ( puntosJugador)
+}
 })
