@@ -6,7 +6,7 @@ const cartasEspeciales = ['A','J','Q','K']
 let puntosJugador = 0;
 puntosCpu = 0
 const btnPedir = document.querySelector('#btnPedir')
-
+const divCartasJugador = document.querySelector('#jugador-cartas')
 const PuntosHtml = document.querySelectorAll('small')
 
 
@@ -53,6 +53,12 @@ btnPedir.addEventListener('click', () => {
      puntosJugador = puntosJugador + valorCarta(carta)
     PuntosHtml[0].innerText = puntosJugador;
 
-    
+const imgCarta = document.createElement('img');
+imgCarta.src = `Assets/Cartas/${carta}.png`
+imgCarta.classList.add('carta')
+divCartasJugador.append(imgCarta)
 
+if ( puntosJugador >21 ) { console.log('Perdiste');
+    btnPedir.disabled = true
+} 
 })
