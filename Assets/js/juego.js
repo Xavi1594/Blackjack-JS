@@ -57,7 +57,7 @@ const turnoCpu = (puntosMinimos) => {
     imgCarta.classList.add("carta");
     divCartasCpu.append(imgCarta);
 
-    if (puntosMinimos > 21) {
+    if (puntosMinimos >= 21) {
       break;
     }
   } while (puntosCpu < puntosMinimos && puntosMinimos <= 21);
@@ -104,12 +104,13 @@ btnPlantarse.addEventListener("click", () => {
   turnoCpu(puntosJugador);
 });
 btnNuevo.addEventListener("click", () => {
+    
   deck = crearDeck();
 
   puntosJugador = 0;
   puntosCpu = 0;
-  PuntosHtml[0] = 0
-  PuntosHtml [1] = 0
+  PuntosHtml[0].innerText = 0
+  PuntosHtml [1].innerText = 0
   divCartasCpu.innerHTML = '';
   divCartasJugador.innerHTML = ''
   btnPedir.disabled = false;
